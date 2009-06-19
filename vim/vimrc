@@ -1,0 +1,82 @@
+set nocompatible
+set autoindent
+set autowrite
+set backspace=2
+set backup
+set backupskip+=*.tmp,crontab.*
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set cmdheight=2
+set display=lastline
+set laststatus=2
+set listchars=tab:>\ ,trail:-
+set listchars+=extends:>,precedes:<
+set pastetoggle=<F2>
+set showcmd
+set showmatch
+set smartcase
+set smarttab
+set scrolloff=2
+set splitbelow
+set statusline=%5*[%n]%*\ %1*%<%.99f%*\ %2*%h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%*%=%-16(\ %3*%l,%c-%v%*\ %)%4*%P%*
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
+set cursorline
+set t_Co=16
+colorscheme shim
+syntax on
+set number
+set grepprg=ack
+set grepformat=%f:%l:%m
+set sts=2
+set smarttab
+set shiftwidth=2
+set expandtab
+set backspace=start,indent,eol
+filetype plugin indent on
+
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+
+" binds <leader>t to textmate-style fuzzy finder
+" binds <leader>b to fuzzy buffer finder for already open files
+let g:fuzzy_ignore = "*.log,vendor/*"
+let g:fuzzy_matching_limit = 70
+
+map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>b :FuzzyFinderBuffer<CR>
+
+"toggle for scratch.vim
+function! ToggleScratch()
+  if expand('%') == g:ScratchBufferName
+    quit
+  else
+    Sscratch
+  endif
+endfunction
+
+map <leader>s :call ToggleScratch()<CR>
+
+"-------- Abbreviations
+""Some lorem ispum text
+abbreviate lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum hendrerit ante. Phasellus vitae enim id erat fringilla fermentum.  Pellentesque tellus. Cras eros magna, pretium ac, tincidunt id, tincidunt eget, mi. Fusce tristique sollicitudin eros. Nam augue nisi, volutpat non, cursus a, aliquam ac, magna. Sed rhoncus, ipsum vitae semper ultrices, ante nunc faucibus nunc, sed iaculis elit metus condimentum turpis. Suspendisse suscipit. Nulla eget nulla. Aliquam varius sem quis tortor. Proin eu dolor a lacus lobortis luctus. Phasellus interdum. Maecenas quis sem. Nulla facilisi.
+
+"Typing 'hh' will give you a '=>'
+abbreviate hh =>
+
+"something resembling a cut/copy/paste
+noremap <C-p> "*P
+imap <C-p> <ESC><C-p>
+vmap <C-p> "*p
+
+noremap <C-c> "*yy
+imap <C-c> <ESC><C-c>
+vmap <C-c> "*y
+
+noremap <C-x> "*dd
+imap <C-x> <ESC><C-x>
+vmap <C-x> "*d
+
+"make movement between splits easier 
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
