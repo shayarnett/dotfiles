@@ -80,3 +80,10 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
+
+"remap movement keys to use screen lines by default
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
